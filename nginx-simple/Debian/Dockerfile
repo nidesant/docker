@@ -5,8 +5,8 @@ FROM debian:latest
 MAINTAINER Nick DeSantis <nidesant@gmail.com>
 
 # Updates packages, installs latest version of nginx, and deletes default nginx.conf file.
-RUN apt-get update -y 
-RUN apt-get install nginx -y 
+RUN apt-get update -y && \ 
+apt-get install nginx -y 
 
 # Remove the default Nginx configuration file
 RUN rm -v /etc/nginx/nginx.conf

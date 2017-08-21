@@ -13,11 +13,11 @@ rm -v /etc/nginx/nginx.conf
 ADD nginx.conf /etc/nginx/
 
 # Ensures that Nginx stays in the foreground so that Docker can track the process properly.
-CMD ["/usr/sbin/nginx -g "daemon off;""]
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Expose ports. 
 EXPOSE 80
 EXPOSE 443
 
 # Start nginx service 
-RUN systemctl start nginx 
+CMD ["nginx"]

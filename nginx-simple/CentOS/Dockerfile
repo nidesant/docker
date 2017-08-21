@@ -4,8 +4,10 @@ FROM centos:latest
 MAINTAINER Nick DeSantis <nidesant@gmail.com>
 
 # Updates packages, installs latest version of nginx, and deletes default nginx.conf file.
-RUN yum update -y
-RUN yum install nginx -y
+RUN yum update -y && \
+yum -y install epel-release && \
+yum -y install nginx 
+
 RUN rm -v /etc/nginx/nginx.conf
 
 # Copies custom conf file from your current directory.

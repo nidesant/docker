@@ -31,11 +31,16 @@ make altinstall && \
 export PATH="/usr/local/bin:$PATH"
 
 # Installs pip
-RUN yum install python2-pip.noarch -y
+RUN cd /tmp_python && \
+wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py && \
+python get-pip.py 
 
-# Removes tmp install path and installs virtualenv
-RUN pip install virtualenv && \
-python -V
+# Installs virtualenv
+RUN pip install virtualenv
+
+# Creates working directory
+ADD . /code
+WORKDIR /code
 
 # Default command
 CMD ["bash"]
